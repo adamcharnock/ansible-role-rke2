@@ -7,6 +7,7 @@
     flat: yes
   delegate_to: "{{ groups.masters.0 }}"
   run_once: true
+  changed_when: false
   when:
   - rke2_download_kubeconf
 
@@ -16,6 +17,7 @@
     regexp: '127.0.0.1'
     replace: "{{ rke2_api_ip | default(hostvars[groups.masters.0]['ansible_default_ipv4']['address']) }}"
   delegate_to: localhost
+  changed_when: false
   when:
   - rke2_download_kubeconf
 
